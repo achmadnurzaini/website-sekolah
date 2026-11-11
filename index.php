@@ -55,7 +55,7 @@
 
   <header id="header" class="header atas d-flex align-items-center position-relative">
     <?php
-        include('view/navtop.php');
+        include(__DIR__ . '/view/navtop.php');
     ?>
   </header>
 
