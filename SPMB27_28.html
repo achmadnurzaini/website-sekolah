@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>SMK Mambaul Jadid</title>
+  <title>SMK Mambaul Jadid || SPMB 2027 - 2028</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
   
@@ -51,9 +51,9 @@
   ======================================================== -->
 </head>
 
-<body class="page-404">
+<body class="spmb-page">
 
-  <header id="header" class="header d-flex align-items-center position-relative">
+  <header id="header" class="header atas d-flex align-items-center position-relative">
     <div class="container position-relative d-flex align-items-center justify-content-between">
 
       <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
@@ -83,6 +83,25 @@
 
     </div>
   </header>
+
+  <div class="modal fade" id="modalBerita" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Berita Penting! 📢</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-content p-3 text-center">
+                <p>Selamat datang! Jangan lupa untuk memeriksa kembali tanggal pengisian form Anda hari ini.</p>
+                <p>Gelombang 1 : 16 November 2026 - 31 Maret 2027 </p>
+                <p>Gelombang 2 : 1 April 2027 - 15 Juli 2027 </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Mengerti</button>
+            </div>
+        </div>
+    </div>
+  </div>
 
   <main class="main">
 
@@ -225,6 +244,11 @@
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
+
+  <script>
+    const modalSaya = new bootstrap.Modal(document.getElementById('modalBerita'));
+    modalSaya.show();
+  </script>
 
 </body>
 
