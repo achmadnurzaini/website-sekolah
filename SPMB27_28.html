@@ -116,7 +116,7 @@
             <p>Lengkapi data berikut dengan benar. Pastikan semua kolom wajib terisi*</p>
           </div>
 
-          <div class="alert theme-success" role="alert">
+          <div class="alert alert-primary" role="alert">
             <p>Gelombang 1 : 16 November 2026 - 31 Maret 2027</p>
           </div>
 
@@ -256,7 +256,7 @@
                     <div class="text-start mb-3">
                       <label for="alamatOrtu">Alamat Orang Tua :</label>
                       <input type="text" class="form-control" id="alamatOrtu" name="alamatOrtu" required>
-                      <input type="date" class="form-control" id="kolomTanggal" name="kolomTanggal" hidden>
+                      <input type="text" id="kolomGelombang" name="gelombang" hidden>
                     </div>
                   </div> 
                 </div>
@@ -385,67 +385,60 @@
     const modalSaya = new bootstrap.Modal(document.getElementById('modalBerita'));
     modalSaya.show();
   </script>
-  
+
   <script>
-        // 1. Ambil tanggal hari ini dari internet
-        fetch('https://timeapi.io/api/v1/timezone/zone?timeZone=Asia%2FJakarta')
-            .then(isiData => isiData.json())
-            .then(hasil => {
-                // Teks tanggal penuh dari internet (YYYY-MM-DD)
-                let stringTanggal = hasil.datetime.substring(0, 10);
-                
-                // Masukkan ke dalam kolom form input
-                document.getElementById('kolomTanggal').value = stringTanggal;
+    // 1. Ambil tanggal hari ini dari perangkat pengguna
+    const today = new Date();
+    let stringTanggal = today.toISOString().substring(0, 10);
+    
+    // Masukkan ke dalam kolom tanggal (jika masih digunakan)
+    const elTanggal = document.getElementById('kolomTanggal');
+    if(elTanggal) elTanggal.value = stringTanggal;
 
-                // Ubah menjadi objek tanggal agar bisa dibandingkan oleh JavaScript
-                let tanggalHariIni = new Date(stringTanggal);
+    let tanggalHariIni = new Date(stringTanggal);
 
-                // 2. Tentukan batas-batas tanggal gelombang (Format: TAHUN, BULAN-1, TANGGAL)
-                let awalGel1 = new Date(2026, 10, 16);  // 16 Nov 2026
-                let akhirGel1 = new Date(2027, 2, 31);   // 31 Mar 2027
-                
-                let awalGel2 = new Date(2027, 3, 1);    // 1 Apr 2027
-                let akhirGel2 = new Date(2027, 6, 15);   // 15 Jul 2027
+    // 2. Tentukan batas-batas tanggal gelombang
+    let awalGel1 = new Date(2026, 10, 16);  // 16 Nov 2026 (Bulan 10 artinya November karena Januari = 0)
+    let akhirGel1 = new Date(2027, 2, 31);   // 31 Mar 2027 (Bulan 2 artinya Maret)
+    
+    let awalGel2 = new Date(2027, 3, 1);    // 1 Apr 2027 (Bulan 3 artinya April)
+    let akhirGel2 = new Date(2027, 6, 15);   // 15 Jul 2027 (Bulan 6 artinya Juli)
 
-                // Elemen HTML yang akan kita ubah isinya
-                let kotak = document.getElementById('kotakWarna');
-                let teks = document.getElementById('teksGelombang');
-                let detail = document.getElementById('detailGelombang');
-                let tombol = document.getElementById('tombolDaftar');
+    // Elemen HTML status gelombang
+    let kotak = document.getElementById('kotakWarna');
+    let teks = document.getElementById('teksGelombang');
+    let detail = document.getElementById('detailGelombang');
+    let tombol = document.getElementById('tombolDaftar');
+    let inputGelombang = document.getElementById('kolomGelombang');
 
-                // 3. Logika pengecekan kondisi tanggal
-                if (tanggalHariIni >= awalGel1 && tanggalHariIni <= akhirGel1) {
-                    // JIKA HARI INI MASUK RENTANG GELOMBANG 1
-                    teks.innerText = "Gelombang 1 Dibuka";
-                    detail.innerText = "Periode Pendaftaran: 16 Nov 2026 s.d 31 Mar 2027";
-                    kotak.className = "alert alert-success text-center p-4 mb-4"; // Warna Hijau
-                } 
-                else if (tanggalHariIni >= awalGel2 && tanggalHariIni <= akhirGel2) {
-                    // JIKA HARI INI MASUK RENTANG GELOMBANG 2
-                    teks.innerText = "Gelombang 2 Dibuka";
-                    detail.innerText = "Periode Pendaftaran: 1 Apr 2027 s.d 15 Jul 2027";
-                    kotak.className = "alert alert-warning text-center p-4 mb-4"; // Warna Kuning
-                } 
-                else if (tanggalHariIni < awalGel1) {
-                    // JIKA BELUM MEMASUKI TANGGAL BUKA GELOMBANG 1
-                    teks.innerText = "Pendaftaran Belum Dibuka";
-                    detail.innerText = "Gelombang 1 akan dimulai pada tanggal 16 November 2026.";
-                    kotak.className = "alert alert-info text-center p-4 mb-4"; // Warna Biru Info
-                    tombol.disabled = true; // Tombol daftar tidak bisa diklik
-                } 
-                else {
-                    // JIKA SUDAH LEWAT DARI 15 JULI 2027
-                    teks.innerText = "Pendaftaran Ditutup";
-                    detail.innerText = "Maaf, seluruh periode pendaftaran telah berakhir.";
-                    kotak.className = "alert alert-danger text-center p-4 mb-4"; // Warna Merah
-                    tombol.disabled = true; // Tombol daftar tidak bisa diklik
-                }
-            })
-            .catch(error => {
-                document.getElementById('teksGelombang').innerText = "Gagal Memuat Data";
-                document.getElementById('detailGelombang').innerText = "Periksa koneksi internet Anda.";
-            });
-    </script>
+    // 3. Logika pengecekan kondisi tanggal & penentuan teks gelombang
+    if (tanggalHariIni >= awalGel1 && tanggalHariIni <= akhirGel1) {
+        teks.innerText = "Gelombang 1 Dibuka";
+        detail.innerText = "Periode Pendaftaran: 16 Nov 2026 s.d 31 Mar 2027";
+        kotak.className = "alert alert-success text-center p-4 mb-4";
+        if(inputGelombang) inputGelombang.value = "Gelombang 1";
+    } 
+    else if (tanggalHariIni >= awalGel2 && tanggalHariIni <= akhirGel2) {
+        teks.innerText = "Gelombang 2 Dibuka";
+        detail.innerText = "Periode Pendaftaran: 1 Apr 2027 s.d 15 Jul 2027";
+        kotak.className = "alert alert-warning text-center p-4 mb-4";
+        if(inputGelombang) inputGelombang.value = "Gelombang 2";
+    } 
+    else if (tanggalHariIni < awalGel1) {
+        teks.innerText = "Pendaftaran Belum Dibuka";
+        detail.innerText = "Gelombang 1 akan dimulai pada tanggal 16 November 2026.";
+        kotak.className = "alert alert-info text-center p-4 mb-4";
+        if(inputGelombang) inputGelombang.value = "Belum Dibuka";
+        if(tombol) tombol.disabled = true;
+    } 
+    else {
+        teks.innerText = "Pendaftaran Ditutup";
+        detail.innerText = "Maaf, seluruh periode pendaftaran telah berakhir.";
+        kotak.className = "alert alert-danger text-center p-4 mb-4";
+        if(inputGelombang) inputGelombang.value = "Ditutup";
+        if(tombol) tombol.disabled = true;
+    }
+  </script>
 
   <script>
     const scriptURL = 'https://script.google.com/macros/s/AKfycbyNblBhGgWoqmZ8crfy3f3O4uDgHHJgaHtVhEzQHFV8PVnd4CNEnIaITM-lvjdgugsP/exec'; // Tempel URL /exec dari Apps Script di sini
