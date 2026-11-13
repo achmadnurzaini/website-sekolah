@@ -256,7 +256,7 @@
                     <div class="text-start mb-3">
                       <label for="alamatOrtu">Alamat Orang Tua :</label>
                       <input type="text" class="form-control" id="alamatOrtu" name="alamatOrtu" required>
-                      <input type="text" id="kolomGelombang" name="gelombang" hidden>
+                      <input type="text" id="kolomGelombang" name="gelombang" class="d-none">
                     </div>
                   </div> 
                 </div>
@@ -429,6 +429,9 @@
     form.addEventListener('submit', e => {
       e.preventDefault();
 
+      // Pastikan nilai gelombang terisi sebelum dikirim
+      cekGelombangOtomatis();
+
       const teksAsli = btnKirim.innerHTML;
       btnKirim.disabled = true;
       btnKirim.innerHTML = 'Mengirim Data... <span class="spinner-border spinner-border-sm ms-2"></span>';
@@ -436,22 +439,26 @@
       const formData = new FormData(form);
       formData.set('persetujuan', document.getElementById('persetujuan').checked ? 'Setuju' : 'Tidak');
 
-      // Menggunakan mode 'no-cors' agar tidak memicu error CORS di browser
-      fetch(scriptURL, { method: 'POST', body: formData, mode: 'no-cors' })
-        .then(() => {
-          alert('Alhamdulillah! Pendaftaran berhasil dikirim. Data Anda sudah tercatat.');
-          form.reset();
-          // Set ulang nilai gelombang otomatis setelah form di-reset
-          cekGelombangOtomatis();
-        })
-        .catch(error => {
-          console.error('Error!', error);
-          alert('Gagal mengirim data. Pastikan koneksi internet Anda stabil.');
-        })
-        .finally(() => {
-          btnKirim.disabled = false;
-          btnKirim.innerHTML = teksAsli;
-        });
+      // Kirim data menggunakan fetch dengan mode no-cors
+      fetch(scriptURL, { 
+        method: 'POST', 
+        body: formData, 
+        mode: 'no-cors' 
+      })
+      .then(response => {
+        // Karena mode no-cors, kita anggap sukses ketika request berhasil dikirim ke server
+        alert('Alhamdulillah! Pendaftaran berhasil dikirim. Data Anda sudah tercatat.');
+        form.reset();
+        cekGelombangOtomatis(); // Set ulang nilai gelombang otomatis setelah form di-reset
+      })
+      .catch(error => {
+        console.error('Error!', error);
+        alert('Gagal mengirim data. Pastikan koneksi internet Anda stabil.');
+      })
+      .finally(() => {
+        btnKirim.disabled = false;
+        btnKirim.innerHTML = teksAsli;
+      });
     });
   </script>
 
