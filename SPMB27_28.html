@@ -51,9 +51,9 @@
   ======================================================== -->
 </head>
 
-<body class="spmb-page">
+<body class="SPMB-page">
 
-  <header id="header" class="header atas d-flex align-items-center position-relative">
+  <header id="header" class="header d-flex align-items-center position-relative">
     <div class="container position-relative d-flex align-items-center justify-content-between">
 
       <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
@@ -62,15 +62,16 @@
         <img src="assets/img/mambauljadid-SMK.png" alt=""> 
       </a>
 
-      <nav id="navmenu" class="navmenu" class="navbar-dark" >
+      <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="index.html">Beranda</a></li>
-          <li><a href="SPMB27_28.html" class="active">SPMB</a></li>
-          <li><a href="about.html">Tentang</a></li>
-          <li><a href="activity.html">Kegiatan</a></li>
-          <li><a href="blog-details.html">Kompetensi</a></li>
-          <li><a href="author-profile.html">Pengembang</a></li>
-          <li><a href="contact.html">Kontak</a></li>
+          <li class="dropdown"><a href="#"><span>Daftar</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              <li><a href="about.html">About</a></li>
+              <li><a href="category.html">Category</a></li>
+              <li><a href="blog-details.html">Blog Details</a></li>
+              <li><a href="author-profile.html">Author Profile</a></li>
+              <li><a href="search-results.html">Search Results</a></li>
+              <li><a href="404.html">404 Not Found Page</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
@@ -84,65 +85,201 @@
     </div>
   </header>
 
+  <!-- STRUKTUR MODAL POPUP BOOTSTRAP -->
   <div class="modal fade" id="modalBerita" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Berita Penting! 📢</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-content p-3 text-center">
-                <p>Selamat datang! Jangan lupa untuk memeriksa kembali tanggal pengisian form Anda hari ini.</p>
-                <p>Gelombang 1 : 16 November 2026 - 31 Maret 2027 </p>
-                <p>Gelombang 2 : 1 April 2027 - 15 Juli 2027 </p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Mengerti</button>
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Berita Penting! 📢</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-content p-3 text-center">
+                    <p>Selamat datang! Jangan lupa untuk memeriksa kembali tanggal pengisian form Anda hari ini.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Mengerti</button>
+                </div>
             </div>
         </div>
     </div>
-  </div>
 
   <main class="main">
 
-    <!-- Error 404 Section -->
-    <section id="error-404" class="error-404 section">
-
+    <section id="blog-comment-form" class="blog-comment-form section">
       <div class="container" data-aos="fade-up" data-aos-delay="100">
 
-        <div class="text-center">
-          <div class="error-icon mb-4" data-aos="zoom-in" data-aos-delay="200">
-            <i class="bi bi-exclamation-circle"></i>
+        <form id="formPendaftaran">
+
+          <div class="section-header">
+            <h3>Formulir Pendaftaran</h3>
+            <p>Lengkapi data berikut dengan benar. Pastikan semua kolom wajib terisi*</p>
           </div>
 
-          <h1 class="error-code mb-4" data-aos="fade-up" data-aos-delay="300">404</h1>
+          <div id="kotakWarna" class="alert alert-secondary text-center p-4 mb-4" role="alert">
+            <h5 id="teksGelombang" class="alert-heading mb-2">Memeriksa Status...</h5>
+            <p id="detailGelombang" class="mb-0 text-muted">Mohon tunggu sebentar, sistem sedang mencocokkan tanggal.</p>
+          </div>
 
-          <h2 class="error-title mb-3" data-aos="fade-up" data-aos-delay="400">Oops! Halaman Tidak Ditemukan</h2>
-
-          <p class="error-text mb-4" data-aos="fade-up" data-aos-delay="500">
-            Halaman masih dalam tahap pengembangan, silahkan kembali ke halaman utama.
-          </p>
-
-          <div class="search-box mb-4" data-aos="fade-up" data-aos-delay="600">
-            <form action="#" class="search-form">
-              <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search for pages..." aria-label="Search">
-                <button class="btn search-btn" type="submit">
-                  <i class="bi bi-search"></i>
-                </button>
+            <div class="card mb-3">
+              <div class="card-header">
+                <h5 class="mb-0">Data Diri</h5>
               </div>
-            </form>
-          </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="text-start mb-3">
+                    <label for="nameInput">Nama Lengkap :</label>
+                    <input type="text" class="form-control" id="nameInput" name="name" required>
+                  </div>
 
-          <div class="error-action" data-aos="fade-up" data-aos-delay="700">
-            <a href="index.html" class="btn btn-primary">Kembali ke Beranda</a>
-          </div>
-        </div>
+                  <div class="text-start mb-3 col-lg-6">
+                    <label for="nik">NIK :</label>
+                    <input type="text" class="form-control" id="nik" name="nik" required>
+                  </div>
 
+                  <div class="text-start mb-3 col-lg-6">
+                    <label for="nisn">NISN :</label>
+                    <input type="text" class="form-control" id="nisn" name="nisn" required>
+                  </div>
+
+                  <div class="text-start mb-3 col-lg-6">
+                    <label for="jk">Jenis Kelamin :</label>
+                    <select type="text" class="form-control" id="jk" name="JK" required>
+                      <option value="">-- Pilih --</option>
+                      <option value="L">Laki-laki</option>
+                      <option value="P">Perempuan</option>
+                    </select>
+                  </div>
+
+                  <div class="text-start mb-3 col-lg-6">
+                    <label for="agama">Agama :</label>
+                    <select type="text" class="form-control" id="agama" name="agama" required>
+                      <option value="">-- Pilih --</option>
+                      <option value="Islam">Islam</option>
+                      <option value="Kristen">Kristen</option>
+                      <option value="Katolik">Katolik</option>
+                      <option value="Hindu">Hindu</option>
+                      <option value="Budha">Budha</option>
+                      <option value="Konghucu">Konghucu</option>
+                    </select>
+                    </div>
+
+                    <div class="text-start mb-3 col-lg-6">
+                      <label for="tempatLahir">Tempat Lahir :</label>
+                      <input type="text" class="form-control" id="tempatLahir" name="tempatLahir" required>
+                    </div>
+
+                    <div class="text-start mb-3 col-lg-6">
+                      <label for="tanggalLahir">Tanggal Lahir :</label>
+                      <input type="date" class="form-control" id="tanggalLahir" name="tanggalLahir" required>
+                    </div>
+
+                    <div class="text-start mb-3 col-lg-4">
+                      <label for="kewarganegaraan">Kewarganegaraan :</label>
+                      <input type="text" class="form-control" id="kewarganegaraan" name="kewarganegaraan" required>
+                    </div>
+
+                    <div class="text-start mb-3 col-lg-4">
+                      <label for="anakke">Anak Keberapa :</label>
+                      <input type="number" class="form-control" id="anakke" name="anakke" required>
+                    </div>
+
+                    <div class="text-start mb-3 col-lg-4">
+                      <label for="jmlsaudarakandung">Jumlah Saudara Kandung :</label>
+                      <input type="number" class="form-control" id="jmlsaudarakandung" name="jmlsaudarakandung" required>
+                    </div>
+
+                    <div class="text-start mb-3">
+                      <label for="alamat">Alamat Domisili:</label>
+                      <input type="text" class="form-control" id="alamat" name="alamat" required>
+                    </div>
+
+                    <div class="text-start mb-3 col-lg-6">
+                      <label for="nohp">No. HP / WhatsApp :</label>
+                      <input type="text" class="form-control" id="nohp" name="nohp" required> 
+                    </div>
+
+                    <div class="text-start mb-3 col-lg-6">
+                      <label for="jurusan">Pilihan Jurusan :</label>
+                      <select type="text" class="form-control" id="jurusan" name="jurusan" required>
+                        <option value="">-- Pilih Jurusan --</option>
+                        <option value="RPL">Rekayasa Perangkat Lunak (RPL)</option>
+                        <option value="TKRO">Teknik Kendaraan Ringan Otomotif (TKRO)</option>
+                        <option value="LPKC">Layanan Penunjang Keperawatan & Caregiving (LPKC)</option>
+                        <option value="DPB">Desain dan Produksi Usaha (DPB)</option>
+                      </select>
+                   </div>
+
+                  <div class="text-start mb-3">
+                    <label for="asalSekolah">Asal Sekolah :</label>
+                    <input type="text" class="form-control" id="asalSekolah" name="asalSekolah" required>
+                  </div>
+
+                  <div class="text-start mb-3">
+                    <label for="alamatsekolah">Alamat Sekolah :</label>
+                    <input type="text" class="form-control" id="alamatsekolah" name="alamatsekolah" required>
+                  </div>
+                </div>
+              </div>
+            </div>  
+
+              <div class="card mb-3">
+                <div class="card-header">
+                  <h5 class="mb-0">Data Orang Tua</h5>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="text-start mb-3 col-lg-6">
+                      <label for="namaAyah">Nama Ayah :</label>
+                      <input type="text" class="form-control" id="namaAyah" name="namaAyah" required>
+                    </div>
+
+                    <div class="text-start mb-3 col-lg-6">
+                      <label for="pekerjaanAyah">Pekerjaan Ayah :</label>
+                      <input type="text" class="form-control" id="pekerjaanAyah" name="pekerjaanAyah" required>
+                    </div>
+
+                    <div class="text-start mb-3 col-lg-6">
+                      <label for="namaIbu">Nama Ibu :</label>
+                      <input type="text" class="form-control" id="namaIbu" name="namaIbu" required>
+                    </div>
+
+                    <div class="text-start mb-3 col-lg-6">
+                      <label for="pekerjaanIbu">Pekerjaan Ibu :</label>
+                      <input type="text" class="form-control" id="pekerjaanIbu" name="pekerjaanIbu" required >
+                    </div>
+
+                    <div class="text-start mb-3">
+                      <label for="nohpOrtu">No. HP / WhatsApp Orang Tua :</label>
+                      <input type="text" class="form-control" id="nohpOrtu" name="nohpOrtu" required>  
+                    </div>
+
+                    <div class="text-start mb-3">
+                      <label for="alamatOrtu">Alamat Orang Tua :</label>
+                      <input type="text" class="form-control" id="alamatOrtu" name="alamatOrtu" required>
+                      <input type="date" class="form-control" id="kolomTanggal" name="kolomTanggal" hidden>
+                    </div>
+                  </div> 
+                </div>
+              </div>
+
+              <div class="card mb-4 border-warning">
+                <div class="card-body bg-light">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="persetujuan" name="persetujuan" required>
+                    <label class="form-check-label fw-semibold" for="persetujuan">
+                      Saya menyatakan bahwa semua data yang saya masukkan adalah benar dan valid.
+                    </label>
+                  </div>
+                </div>              
+              </div>
+                  
+              <div class="d-grid">
+                  <button type="submit" id="tombolDaftar" class="btn-submit">Kirim Pendaftaran<i class="bi bi-send-fill ms-2"></i></button>
+              </div>
+              
+        </form>
       </div>
-
-    </section><!-- /Error 404 Section -->
-
+    </section>
   </main>
 
   <footer id="footer" class="footer position-relative light-background">
@@ -170,28 +307,28 @@
               <div class="col-6 col-md-4">
                 <h5>Company</h5>
                 <ul class="list-unstyled">
-                  <li><a href="about.html">Tentang Kami</a></li>
-                  <li><a href="author-profile.html">RPL Dev-Center</a></li>
-                  <li><a href="activity.html">Kegiatan</a></li>
-                  <li><a href="blog-details.html">Kompetensi</a></li>
+                  <li><a href="#">About Us</a></li>
+                  <li><a href="#">Our Team</a></li>
+                  <li><a href="#">Careers</a></li>
+                  <li><a href="#">Newsroom</a></li>
                 </ul>
               </div>
               <div class="col-6 col-md-4">
-                <h5>Layanan</h5>
+                <h5>Services</h5>
                 <ul class="list-unstyled">
-                  <li><a href="#">Pengembangan Website</a></li>
-                  <li><a href="#">Pengembangan Aplikasi</a></li>
-                  <li><a href="#">Pengembangan Sistem</a></li>
+                  <li><a href="#">Web Development</a></li>
+                  <li><a href="#">UI/UX Design</a></li>
+                  <li><a href="#">Digital Strategy</a></li>
                   <li><a href="#">Branding</a></li>
                 </ul>
               </div>
               <div class="col-6 col-md-4">
-                <h5>Pendukung</h5>
+                <h5>Support</h5>
                 <ul class="list-unstyled">
-                  <li><a href="#">Pusat Bantuan</a></li>
-                  <li><a href="#">Kontak</a></li>
-                  <li><a href="#">Kebijakan Privasi</a></li>
-                  <li><a href="#">Ketentuan Layanan</a></li>
+                  <li><a href="#">Help Center</a></li>
+                  <li><a href="#">Contact Us</a></li>
+                  <li><a href="#">Privacy Policy</a></li>
+                  <li><a href="#">Terms of Service</a></li>
                 </ul>
               </div>
             </div>
@@ -200,8 +337,8 @@
 
         <div class="col-lg-2">
           <div class="footer-cta">
-            <h5>Mari Terhubung</h5>
-            <a href="contact.html" class="btn btn-outline">Hubungi Kami</a>
+            <h5>Let's Connect</h5>
+            <a href="contact.html" class="btn btn-outline">Get in Touch</a>
           </div>
         </div>
 
@@ -219,7 +356,7 @@
                 <!-- You can delete the links only if you've purchased the pro version. -->
                 <!-- Licensing information: https://bootstrapmade.com/license/ -->
                 <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-                Designed by <a href="https://bootstrapmade.com/">RPL Dev-center</a> | <a href="https://bootstrapmade.com/tools/">SMAJA</a> | <a href="https://bootstrapmade.com">bootstrapmade</a>
+                Designed by <a href="https://bootstrapmade.com/">RPL Dev-center</a> | <a href="https://bootstrapmade.com/tools/">SMAJA</a>
               </div>
             </div>
           </div>
@@ -237,7 +374,6 @@
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
@@ -248,6 +384,109 @@
   <script>
     const modalSaya = new bootstrap.Modal(document.getElementById('modalBerita'));
     modalSaya.show();
+  </script>
+  
+  <script>
+        // 1. Ambil tanggal hari ini dari internet
+        fetch('https://timeapi.io/api/v1/timezone/zone?timeZone=Asia%2FJakarta')
+            .then(isiData => isiData.json())
+            .then(hasil => {
+                // Teks tanggal penuh dari internet (YYYY-MM-DD)
+                let stringTanggal = hasil.datetime.substring(0, 10);
+                
+                // Masukkan ke dalam kolom form input
+                document.getElementById('kolomTanggal').value = stringTanggal;
+
+                // Ubah menjadi objek tanggal agar bisa dibandingkan oleh JavaScript
+                let tanggalHariIni = new Date(stringTanggal);
+
+                // 2. Tentukan batas-batas tanggal gelombang (Format: TAHUN, BULAN-1, TANGGAL)
+                let awalGel1 = new Date(2026, 10, 16);  // 16 Nov 2026
+                let akhirGel1 = new Date(2027, 2, 31);   // 31 Mar 2027
+                
+                let awalGel2 = new Date(2027, 3, 1);    // 1 Apr 2027
+                let akhirGel2 = new Date(2027, 6, 15);   // 15 Jul 2027
+
+                // Elemen HTML yang akan kita ubah isinya
+                let kotak = document.getElementById('kotakWarna');
+                let teks = document.getElementById('teksGelombang');
+                let detail = document.getElementById('detailGelombang');
+                let tombol = document.getElementById('tombolDaftar');
+
+                // 3. Logika pengecekan kondisi tanggal
+                if (tanggalHariIni >= awalGel1 && tanggalHariIni <= akhirGel1) {
+                    // JIKA HARI INI MASUK RENTANG GELOMBANG 1
+                    teks.innerText = "Gelombang 1 Dibuka";
+                    detail.innerText = "Periode Pendaftaran: 16 Nov 2026 s.d 31 Mar 2027";
+                    kotak.className = "alert alert-success text-center p-4 mb-4"; // Warna Hijau
+                } 
+                else if (tanggalHariIni >= awalGel2 && tanggalHariIni <= akhirGel2) {
+                    // JIKA HARI INI MASUK RENTANG GELOMBANG 2
+                    teks.innerText = "Gelombang 2 Dibuka";
+                    detail.innerText = "Periode Pendaftaran: 1 Apr 2027 s.d 15 Jul 2027";
+                    kotak.className = "alert alert-warning text-center p-4 mb-4"; // Warna Kuning
+                } 
+                else if (tanggalHariIni < awalGel1) {
+                    // JIKA BELUM MEMASUKI TANGGAL BUKA GELOMBANG 1
+                    teks.innerText = "Pendaftaran Belum Dibuka";
+                    detail.innerText = "Gelombang 1 akan dimulai pada tanggal 16 November 2026.";
+                    kotak.className = "alert alert-info text-center p-4 mb-4"; // Warna Biru Info
+                    tombol.disabled = true; // Tombol daftar tidak bisa diklik
+                } 
+                else {
+                    // JIKA SUDAH LEWAT DARI 15 JULI 2027
+                    teks.innerText = "Pendaftaran Ditutup";
+                    detail.innerText = "Maaf, seluruh periode pendaftaran telah berakhir.";
+                    kotak.className = "alert alert-danger text-center p-4 mb-4"; // Warna Merah
+                    tombol.disabled = true; // Tombol daftar tidak bisa diklik
+                }
+            })
+            .catch(error => {
+                document.getElementById('teksGelombang').innerText = "Gagal Memuat Data";
+                document.getElementById('detailGelombang').innerText = "Periksa koneksi internet Anda.";
+            });
+    </script>
+
+  <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbyNblBhGgWoqmZ8crfy3f3O4uDgHHJgaHtVhEzQHFV8PVnd4CNEnIaITM-lvjdgugsP/exec'; // Tempel URL /exec dari Apps Script di sini
+    const form = document.getElementById('formPendaftaran');
+    const btnKirim = document.getElementById('tombolDaftar');
+
+    form.addEventListener('submit', e => {
+      e.preventDefault(); // Mencegah halaman reload atau pindah tab
+
+      // Ubah tampilan tombol saat proses mengirim
+      const teksAsli = btnKirim.innerHTML;
+      btnKirim.disabled = true;
+      btnKirim.innerHTML = 'Mengirim Data... <span class="spinner-border spinner-border-sm ms-2"></span>';
+
+      // Ambil semua data dari form
+      const formData = new FormData(form);
+      // Ubah nilai checkbox persetujuan menjadi teks yang jelas
+      formData.set('persetujuan', document.getElementById('persetujuan').checked ? 'Setuju' : 'Tidak');
+
+      fetch(scriptURL, { method: 'POST', body: formData })
+        .then(response => response.json())
+        .then(data => {
+          if (data.result === 'success') {
+            alert('Alhamdulillah! Pendaftaran berhasil dikirim. Data Anda sudah tercatat.');
+            form.reset();
+            // Kembalikan tanggal hari ini ke input hidden setelah form di-reset
+            document.getElementById('kolomTanggal').value = new Date().toISOString().substring(0, 10);
+          } else {
+            alert('Terjadi kesalahan: ' + data.error);
+          }
+        })
+        .catch(error => {
+          console.error('Error!', error.message);
+          alert('Gagal mengirim data. Pastikan koneksi internet Anda stabil.');
+        })
+        .finally(() => {
+          // Kembalikan tombol ke kondisi semula
+          btnKirim.disabled = false;
+          btnKirim.innerHTML = teksAsli;
+        });
+    });
   </script>
 
 </body>
